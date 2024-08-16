@@ -2,6 +2,8 @@
 
 This is a pytorch implementation of FSCVP: Feature Sharing Connection for Efficient Spatiotemporal Prediction
 
+![FSCVP Figure](./fscvp_figure.png)
+
 ## Installation
 
 ```shell
