@@ -1,0 +1,393 @@
+2024-08-07 19:15:48,808 - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.10.8 | packaged by conda-forge | (main, Nov 22 2022, 08:26:04) [GCC 10.4.0]
+CUDA available: True
+CUDA_HOME: None
+GPU 0: NVIDIA GeForce RTX 3070
+GCC: 
+PyTorch: 2.1.1
+PyTorch compiling details: PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2022.1-Product Build 20220311 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.1.1 (Git Hash 64f6bcbcbab628e96f33a62c3e975f8535a7bde4)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.8
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 8.7
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.8, CUDNN_VERSION=8.7.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-invalid-partial-specialization -Wno-unused-private-field -Wno-aligned-allocation-unavailable -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Werror=cast-function-type -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_DISABLE_GPU_ASSERTS=ON, TORCH_VERSION=2.1.1, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, 
+
+TorchVision: 0.16.1
+OpenCV: 4.10.0
+openstl: 1.0.0
+------------------------------------------------------------
+
+2024-08-07 19:15:48,808 - 
+device: 	cuda	
+dist: 	False	
+res_dir: 	work_dirs	
+ex_name: 	taxibj_fscvp_240807-2	
+fp16: 	False	
+torchscript: 	False	
+seed: 	42	
+fps: 	False	
+test: 	False	
+deterministic: 	False	
+batch_size: 	16	
+val_batch_size: 	16	
+num_workers: 	4	
+data_root: 	./data	
+dataname: 	taxibj	
+pre_seq_length: 	4	
+aft_seq_length: 	4	
+total_length: 	8	
+use_augment: 	False	
+use_prefetcher: 	False	
+drop_last: 	False	
+method: 	fscvp	
+config_file: 	configs/taxibj/FSCVP.py	
+model_type: 	gSTA	
+drop: 	0.0	
+drop_path: 	0.0	
+overwrite: 	False	
+epoch: 	51	
+log_step: 	1	
+opt: 	adamw	
+opt_eps: 	None	
+opt_betas: 	None	
+momentum: 	0.9	
+weight_decay: 	0.0	
+clip_grad: 	None	
+clip_mode: 	norm	
+no_display_method_info: 	False	
+sched: 	cosine	
+lr: 	0.001	
+lr_k_decay: 	1.0	
+warmup_lr: 	1e-05	
+min_lr: 	1e-06	
+final_div_factor: 	10000.0	
+warmup_epoch: 	5	
+decay_epoch: 	100	
+decay_rate: 	0.1	
+filter_bias_and_bn: 	False	
+gpus: 	[0]	
+metric_for_bestckpt: 	val_loss	
+ckpt_path: 	None	
+hidden_dim: 	64	
+N: 	4	
+NE: 	2	
+ND: 	2	
+patch_size: 	2	
+in_shape: 	[4, 2, 32, 32]	
+metrics: 	['mse', 'mae', 'ssim', 'psnr']	
+2024-08-07 19:15:48,808 - Model info:
+FSCVP_Model(
+  (embed): ModuleList(
+    (0): PatchEmbed(
+      (proj): Conv2d(2, 64, kernel_size=(2, 2), stride=(2, 2))
+      (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): PatchEmbed(
+      (proj): Conv2d(64, 128, kernel_size=(2, 2), stride=(2, 2))
+      (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (2): PatchEmbed(
+      (proj): ConvTranspose2d(128, 128, kernel_size=(2, 2), stride=(2, 2))
+      (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (3): PatchEmbed(
+      (proj): ConvTranspose2d(128, 64, kernel_size=(2, 2), stride=(2, 2))
+      (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layers): ModuleList(
+    (0): ModuleList(
+      (0): EncoderLayer_T(
+        (attn): FeedForward(
+          (ff1): Sequential(
+            (0): Conv3d(64, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=64, bias=False)
+            (1): Conv3d(64, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=same, dilation=(1, 1, 2), groups=64, bias=False)
+            (2): GELU(approximate='none')
+          )
+          (drop_path): Identity()
+        )
+        (norm): GroupNorm(1, 64, eps=1e-05, affine=True)
+      )
+      (1): EncoderLayer_S(
+        (attn): ConvMod(
+          (norm1): LayerNorm()
+          (norm2): LayerNorm()
+          (a): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(64, 64, kernel_size=(7, 7), stride=(1, 1), padding=same, groups=64)
+          )
+          (v): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (proj): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (drop_path): Identity()
+        )
+        (norm): GroupNorm(1, 64, eps=1e-05, affine=True)
+      )
+      (2): EncoderLayer_T(
+        (attn): FeedForward(
+          (ff1): Sequential(
+            (0): Conv3d(64, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=64, bias=False)
+            (1): Conv3d(64, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=same, dilation=(1, 1, 2), groups=64, bias=False)
+            (2): GELU(approximate='none')
+          )
+          (drop_path): Identity()
+        )
+        (norm): GroupNorm(1, 64, eps=1e-05, affine=True)
+      )
+      (3): EncoderLayer_S(
+        (attn): ConvMod(
+          (norm1): LayerNorm()
+          (norm2): LayerNorm()
+          (a): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(64, 64, kernel_size=(7, 7), stride=(1, 1), padding=same, groups=64)
+          )
+          (v): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (proj): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (drop_path): Identity()
+        )
+        (norm): GroupNorm(1, 64, eps=1e-05, affine=True)
+      )
+    )
+    (1): ModuleList(
+      (0): EncoderLayer_T(
+        (attn): FeedForward(
+          (ff1): Sequential(
+            (0): Conv3d(128, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=128, bias=False)
+            (1): Conv3d(128, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=same, dilation=(1, 1, 2), groups=128, bias=False)
+            (2): GELU(approximate='none')
+          )
+          (drop_path): Identity()
+        )
+        (norm): GroupNorm(1, 128, eps=1e-05, affine=True)
+      )
+      (1): EncoderLayer_S(
+        (attn): ConvMod(
+          (norm1): LayerNorm()
+          (norm2): LayerNorm()
+          (a): Sequential(
+            (0): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(128, 128, kernel_size=(7, 7), stride=(1, 1), padding=same, groups=128)
+          )
+          (v): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+          (proj): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+          (drop_path): Identity()
+        )
+        (norm): GroupNorm(1, 128, eps=1e-05, affine=True)
+      )
+      (2): EncoderLayer_T(
+        (attn): FeedForward(
+          (ff1): Sequential(
+            (0): Conv3d(128, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=128, bias=False)
+            (1): Conv3d(128, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=same, dilation=(1, 1, 2), groups=128, bias=False)
+            (2): GELU(approximate='none')
+          )
+          (drop_path): Identity()
+        )
+        (norm): GroupNorm(1, 128, eps=1e-05, affine=True)
+      )
+      (3): EncoderLayer_S(
+        (attn): ConvMod(
+          (norm1): LayerNorm()
+          (norm2): LayerNorm()
+          (a): Sequential(
+            (0): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(128, 128, kernel_size=(7, 7), stride=(1, 1), padding=same, groups=128)
+          )
+          (v): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+          (proj): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+          (drop_path): Identity()
+        )
+        (norm): GroupNorm(1, 128, eps=1e-05, affine=True)
+      )
+    )
+    (2): ModuleList(
+      (0): DecoderLayer_T(
+        (mlp): Sequential(
+          (0): Conv3d(128, 256, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+          (1): GELU(approximate='none')
+          (2): Conv3d(256, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+        )
+        (norm): GroupNorm(1, 128, eps=1e-05, affine=True)
+      )
+      (1): DecoderLayer_S(
+        (mlp): Sequential(
+          (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1))
+          (1): GELU(approximate='none')
+          (2): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (norm): GroupNorm(1, 128, eps=1e-05, affine=True)
+      )
+      (2): DecoderLayer_T(
+        (mlp): Sequential(
+          (0): Conv3d(128, 256, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+          (1): GELU(approximate='none')
+          (2): Conv3d(256, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+        )
+        (norm): GroupNorm(1, 128, eps=1e-05, affine=True)
+      )
+      (3): DecoderLayer_S(
+        (mlp): Sequential(
+          (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1))
+          (1): GELU(approximate='none')
+          (2): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (norm): GroupNorm(1, 128, eps=1e-05, affine=True)
+      )
+    )
+    (3): ModuleList(
+      (0): DecoderLayer_T(
+        (mlp): Sequential(
+          (0): Conv3d(64, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+          (1): GELU(approximate='none')
+          (2): Conv3d(128, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+        )
+        (norm): GroupNorm(1, 64, eps=1e-05, affine=True)
+      )
+      (1): DecoderLayer_S(
+        (mlp): Sequential(
+          (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1))
+          (1): GELU(approximate='none')
+          (2): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (norm): GroupNorm(1, 64, eps=1e-05, affine=True)
+      )
+      (2): DecoderLayer_T(
+        (mlp): Sequential(
+          (0): Conv3d(64, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+          (1): GELU(approximate='none')
+          (2): Conv3d(128, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+        )
+        (norm): GroupNorm(1, 64, eps=1e-05, affine=True)
+      )
+      (3): DecoderLayer_S(
+        (mlp): Sequential(
+          (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1))
+          (1): GELU(approximate='none')
+          (2): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (norm): GroupNorm(1, 64, eps=1e-05, affine=True)
+      )
+    )
+  )
+  (finalembed): PatchEmbed(
+    (proj): ConvTranspose2d(64, 64, kernel_size=(2, 2), stride=(2, 2))
+    (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (final): Sequential(
+    (0): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): Sigmoid()
+  )
+)
+| module                    | #parameters or shape   | #flops     |
+|:--------------------------|:-----------------------|:-----------|
+| model                     | 4.91M                  | 1.98G      |
+|  embed                    |  0.133M                |  18.121M   |
+|   embed.0                 |   0.704K               |   0.852M   |
+|    embed.0.proj           |    0.576K              |    0.524M  |
+|    embed.0.norm           |    0.128K              |    0.328M  |
+|   embed.1                 |   33.152K              |   8.552M   |
+|    embed.1.proj           |    32.896K             |    8.389M  |
+|    embed.1.norm           |    0.256K              |    0.164M  |
+|   embed.2                 |   65.92K               |            |
+|    embed.2.proj           |    65.664K             |            |
+|    embed.2.norm           |    0.256K              |            |
+|   embed.3                 |   32.96K               |   8.716M   |
+|    embed.3.proj           |    32.832K             |    8.389M  |
+|    embed.3.norm           |    0.128K              |    0.328M  |
+|  layers                   |  4.76M                 |  1.939G    |
+|   layers.0                |   39.68K               |   30.015M  |
+|    layers.0.0             |    3.648K              |    2.097M  |
+|    layers.0.1             |    16.192K             |    12.911M |
+|    layers.0.2             |    3.648K              |    2.097M  |
+|    layers.0.3             |    16.192K             |    12.911M |
+|   layers.1                |   0.129M               |   27.591M  |
+|    layers.1.0             |    7.296K              |    1.049M  |
+|    layers.1.1             |    56.96K              |    12.747M |
+|    layers.1.2             |    7.296K              |    1.049M  |
+|    layers.1.3             |    56.96K              |    12.747M |
+|   layers.2                |   3.673M               |   0.94G    |
+|    layers.2.0             |    1.77M               |    0.453G  |
+|    layers.2.1             |    66.176K             |    16.941M |
+|    layers.2.2             |    1.77M               |    0.453G  |
+|    layers.2.3             |    66.176K             |    16.941M |
+|   layers.3                |   0.919M               |   0.941G   |
+|    layers.3.0             |    0.443M              |    0.453G  |
+|    layers.3.1             |    16.704K             |    17.105M |
+|    layers.3.2             |    0.443M              |    0.453G  |
+|    layers.3.3             |    16.704K             |    17.105M |
+|  finalembed               |  16.576K               |  18.088M   |
+|   finalembed.proj         |   16.448K              |   16.777M  |
+|    finalembed.proj.weight |    (64, 64, 2, 2)      |            |
+|    finalembed.proj.bias   |    (64,)               |            |
+|   finalembed.norm         |   0.128K               |   1.311M   |
+|    finalembed.norm.weight |    (64,)               |            |
+|    finalembed.norm.bias   |    (64,)               |            |
+|  final.0                  |  1.152K                |  4.719M    |
+|   final.0.weight          |   (2, 64, 3, 3)        |            |
+--------------------------------------------------------------------------------
+
+2024-08-07 19:17:25,616 - Epoch 1: Lr: 0.0002080 | Train Loss: 0.9430390 | Vali Loss: 0.0066082
+2024-08-07 19:18:13,540 - Epoch 2: Lr: 0.0004060 | Train Loss: 0.2431587 | Vali Loss: 0.0006528
+2024-08-07 19:19:01,498 - Epoch 3: Lr: 0.0006040 | Train Loss: 0.0400837 | Vali Loss: 0.0003576
+2024-08-07 19:19:49,443 - Epoch 4: Lr: 0.0008020 | Train Loss: 0.0199170 | Vali Loss: 0.0003001
+2024-08-07 19:20:38,323 - Epoch 5: Lr: 0.0009765 | Train Loss: 0.0160568 | Vali Loss: 0.0003585
+2024-08-07 19:21:27,212 - Epoch 6: Lr: 0.0009663 | Train Loss: 0.0152881 | Vali Loss: 0.0003110
+2024-08-07 19:22:16,103 - Epoch 7: Lr: 0.0009543 | Train Loss: 0.0142635 | Vali Loss: 0.0003821
+2024-08-07 19:23:05,149 - Epoch 8: Lr: 0.0009406 | Train Loss: 0.0133346 | Vali Loss: 0.0003305
+2024-08-07 19:23:54,061 - Epoch 9: Lr: 0.0009252 | Train Loss: 0.0131022 | Vali Loss: 0.0002680
+2024-08-07 19:24:43,052 - Epoch 10: Lr: 0.0009082 | Train Loss: 0.0125983 | Vali Loss: 0.0002661
+2024-08-07 19:25:31,998 - Epoch 11: Lr: 0.0008897 | Train Loss: 0.0122220 | Vali Loss: 0.0002529
+2024-08-07 19:26:20,916 - Epoch 12: Lr: 0.0008696 | Train Loss: 0.0117922 | Vali Loss: 0.0003630
+2024-08-07 19:27:09,698 - Epoch 13: Lr: 0.0008482 | Train Loss: 0.0116011 | Vali Loss: 0.0002316
+2024-08-07 19:27:58,685 - Epoch 14: Lr: 0.0008255 | Train Loss: 0.0114296 | Vali Loss: 0.0002147
+2024-08-07 19:28:47,610 - Epoch 15: Lr: 0.0008015 | Train Loss: 0.0111137 | Vali Loss: 0.0001937
+2024-08-07 19:29:36,525 - Epoch 16: Lr: 0.0007764 | Train Loss: 0.0109424 | Vali Loss: 0.0003015
+2024-08-07 19:30:25,349 - Epoch 17: Lr: 0.0007503 | Train Loss: 0.0107584 | Vali Loss: 0.0002067
+2024-08-07 19:31:14,162 - Epoch 18: Lr: 0.0007231 | Train Loss: 0.0104659 | Vali Loss: 0.0002360
+2024-08-07 19:32:03,045 - Epoch 19: Lr: 0.0006952 | Train Loss: 0.0104716 | Vali Loss: 0.0001831
+2024-08-07 19:32:51,989 - Epoch 20: Lr: 0.0006665 | Train Loss: 0.0101431 | Vali Loss: 0.0001886
+2024-08-07 19:33:40,888 - Epoch 21: Lr: 0.0006372 | Train Loss: 0.0100938 | Vali Loss: 0.0001789
+2024-08-07 19:34:29,852 - Epoch 22: Lr: 0.0006074 | Train Loss: 0.0099618 | Vali Loss: 0.0002152
+2024-08-07 19:35:19,364 - Epoch 23: Lr: 0.0005771 | Train Loss: 0.0097438 | Vali Loss: 0.0001941
+2024-08-07 19:36:08,251 - Epoch 24: Lr: 0.0005466 | Train Loss: 0.0097201 | Vali Loss: 0.0001708
+2024-08-07 19:36:57,348 - Epoch 25: Lr: 0.0005159 | Train Loss: 0.0094973 | Vali Loss: 0.0002042
+2024-08-07 19:37:47,176 - Epoch 26: Lr: 0.0004851 | Train Loss: 0.0094463 | Vali Loss: 0.0001579
+2024-08-07 19:38:36,094 - Epoch 27: Lr: 0.0004544 | Train Loss: 0.0092799 | Vali Loss: 0.0001609
+2024-08-07 19:39:25,203 - Epoch 28: Lr: 0.0004239 | Train Loss: 0.0091526 | Vali Loss: 0.0001691
+2024-08-07 19:40:15,006 - Epoch 29: Lr: 0.0003936 | Train Loss: 0.0090989 | Vali Loss: 0.0001637
+2024-08-07 19:41:04,265 - Epoch 30: Lr: 0.0003638 | Train Loss: 0.0088374 | Vali Loss: 0.0001640
+2024-08-07 19:41:53,412 - Epoch 31: Lr: 0.0003345 | Train Loss: 0.0087843 | Vali Loss: 0.0001759
+2024-08-07 19:42:42,255 - Epoch 32: Lr: 0.0003058 | Train Loss: 0.0086700 | Vali Loss: 0.0002013
+2024-08-07 19:43:31,047 - Epoch 33: Lr: 0.0002779 | Train Loss: 0.0086121 | Vali Loss: 0.0001584
+2024-08-07 19:44:19,880 - Epoch 34: Lr: 0.0002507 | Train Loss: 0.0085154 | Vali Loss: 0.0001551
+2024-08-07 19:45:08,832 - Epoch 35: Lr: 0.0002246 | Train Loss: 0.0083956 | Vali Loss: 0.0001478
+2024-08-07 19:45:57,765 - Epoch 36: Lr: 0.0001995 | Train Loss: 0.0083597 | Vali Loss: 0.0001558
+2024-08-07 19:46:46,656 - Epoch 37: Lr: 0.0001755 | Train Loss: 0.0082827 | Vali Loss: 0.0001614
+2024-08-07 19:47:35,492 - Epoch 38: Lr: 0.0001528 | Train Loss: 0.0081790 | Vali Loss: 0.0001419
+2024-08-07 19:48:24,440 - Epoch 39: Lr: 0.0001314 | Train Loss: 0.0081236 | Vali Loss: 0.0001464
+2024-08-07 19:49:13,285 - Epoch 40: Lr: 0.0001113 | Train Loss: 0.0080635 | Vali Loss: 0.0001451
+2024-08-07 19:50:02,278 - Epoch 41: Lr: 0.0000928 | Train Loss: 0.0079963 | Vali Loss: 0.0001510
+2024-08-07 19:50:51,529 - Epoch 42: Lr: 0.0000758 | Train Loss: 0.0079666 | Vali Loss: 0.0001453
+2024-08-07 19:51:40,400 - Epoch 43: Lr: 0.0000604 | Train Loss: 0.0079109 | Vali Loss: 0.0001437
+2024-08-07 19:52:29,246 - Epoch 44: Lr: 0.0000467 | Train Loss: 0.0078732 | Vali Loss: 0.0001434
+2024-08-07 19:53:18,113 - Epoch 45: Lr: 0.0000347 | Train Loss: 0.0078432 | Vali Loss: 0.0001453
+2024-08-07 19:54:06,988 - Epoch 46: Lr: 0.0000245 | Train Loss: 0.0078150 | Vali Loss: 0.0001464
+2024-08-07 19:54:55,810 - Epoch 47: Lr: 0.0000161 | Train Loss: 0.0077933 | Vali Loss: 0.0001445
+2024-08-07 19:55:44,636 - Epoch 48: Lr: 0.0000095 | Train Loss: 0.0077740 | Vali Loss: 0.0001457
+2024-08-07 19:56:33,455 - Epoch 49: Lr: 0.0000048 | Train Loss: 0.0077538 | Vali Loss: 0.0001441
+2024-08-07 19:57:22,266 - Epoch 50: Lr: 0.0000019 | Train Loss: 0.0077488 | Vali Loss: 0.0001453
+2024-08-07 19:57:23,911 - mse:0.2974836826324463, mae:14.694890975952148, ssim:0.9853700933456421, psnr:39.781570096950425
